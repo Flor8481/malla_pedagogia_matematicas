@@ -1,51 +1,74 @@
 body {
-  background-color: #fff0f6;
-  font-family: Arial, sans-serif;
-  padding: 30px;
-  color: #4a0033;
-  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #fff0f6;
+  color: #4a3c44;
+  margin: 20px;
 }
+
 h1 {
-  margin-bottom: 20px;
-  color: #ad1457;
+  text-align: center;
+  color: #d81b60;
+  margin-bottom: 30px;
 }
-.semester {
-  margin-bottom: 40px;
-}
-.semester h2 {
-  color: #880e4f;
-  border-bottom: 2px solid #f48fb1;
-  padding-bottom: 5px;
-  margin-bottom: 20px;
-}
-#malla {
+
+.container {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 15px;
+  flex-direction: row; /* Semestres en fila horizontal */
+  justify-content: flex-start;
+  gap: 20px;
+  overflow-x: auto;
+  padding: 10px;
 }
+
+.semester {
+  display: flex;
+  flex-direction: column; /* Asignaturas en columna dentro del semestre */
+  background: #f8bbd0;
+  border-radius: 12px;
+  padding: 15px;
+  min-width: 220px;
+  box-shadow: 0 4px 8px rgba(216, 27, 96, 0.2);
+  scroll-snap-align: start;
+}
+
+.semester h2 {
+  margin-bottom: 12px;
+  color: #880e4f;
+  font-weight: 700;
+  text-align: center;
+  border-bottom: 2px solid #d81b60;
+  padding-bottom: 6px;
+}
+
 .subject {
   background-color: #fce4ec;
-  border: 2px solid #f8bbd0;
-  border-radius: 12px;
-  padding: 12px 18px;
-  min-width: 220px;
-  cursor: pointer;
+  margin: 6px 0;
+  padding: 12px 10px;
+  border-radius: 8px;
+  color: #880e4f;
   font-weight: 600;
-  color: #d81b60;
+  cursor: pointer;
   user-select: none;
-  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-  text-align: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  box-shadow: 0 1px 3px rgba(216, 27, 96, 0.2);
 }
+
 .subject.locked {
   background-color: #f8bbd0;
-  border-color: #f48fb1;
-  color: #880e4f;
+  color: #a07a8b;
   cursor: not-allowed;
   opacity: 0.6;
+  box-shadow: none;
 }
-.subject:hover:not(.locked) {
+
+.subject.unlocked {
   background-color: #f48fb1;
   color: #fff;
-  border-color: #ad1457;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(216, 27, 96, 0.5);
+}
+
+.subject:hover:not(.locked) {
+  background-color: #ec407a;
+  color: white;
 }
