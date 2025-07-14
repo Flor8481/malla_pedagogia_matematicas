@@ -1,103 +1,90 @@
-const ramos = [
-  // 1º Semestre
-  { nombre: "Cálculo I", categoria: "funciones", abre: ["Cálculo II"] },
-  { nombre: "Álgebra", categoria: "numeros-algebra", abre: ["Álgebra Lineal I", "Teoría de números"] },
-  { nombre: "Geometría analítica y vectorial", categoria: "geometria", abre: ["Álgebra Lineal I"] },
-  { nombre: "Antropología Cristiana", categoria: "fundamental", abre: [] },
+// Mapeo de asignaturas y las que desbloquean
+const unlockMap = {
+  // I SEMESTRE
+  calculo1: ["calculo2"],
+  algebra: ["algebra_lineal1", "teoria_numeros"],
+  geometria_analitica: ["algebra_lineal1"],
+  // II SEMESTRE
+  calculo2: ["calculo3", "metodos_numericos", "estadistica1"],
+  algebra_lineal1: [],
+  programacion: ["metodos_numericos"],
+  etica: [],
+  formacion_fundamental1: ["formacion_fundamental2"],
+  // III SEMESTRE
+  calculo3: ["analisis_real"],
+  teoria_numeros: ["estructuras_algebraicas1"],
+  metodos_numericos: ["uso_tecnologias"],
+  estrategias_discursivas1: ["estrategias_discursivas2"],
+  formacion_fundamental2: ["formacion_fundamental3"],
+  // IV SEMESTRE
+  analisis_real: ["didactica_calculo"],
+  estructuras_algebraicas1: ["didactica_sistemas_numericos"],
+  practica_docente_inicial: ["practica_docente_intermedia", "practica_comunitaria", "fundamentos_filosoficos"],
+  taller_adolescente: ["practica_comunitaria", "practica_docente_intermedia"],
+  educar_diversidad: ["practica_comunitaria", "practica_docente_intermedia"],
+  // V SEMESTRE
+  didactica_calculo: ["didactica_geometria"],
+  didactica_sistemas_numericos: ["practica_comunitaria", "practica_docente_intermedia"],
+  geometria_euclidiana: ["geometria_3d"],
+  estadistica1: ["estadistica2", "didactica_estadistica"],
+  formacion_fundamental3: [],
+  // VI SEMESTRE
+  geometria_3d: ["didactica_geometria"],
+  didactica_estadistica: ["didactica_probabilidad"],
+  practica_comunitaria: ["practica_docente_final"],
+  psicologia_social: [],
+  fundamentos_filosoficos: [],
+  ingles1: ["ingles2"],
+  // VII SEMESTRE
+  optativo1: [],
+  didactica_geometria: ["uso_tecnologias"],
+  estadistica2: ["didactica_probabilidad"],
+  teoria_planificacion_curricular: ["evaluacion"],
+  politicas_publicas: [],
+  estrategias_discursivas2: ["taller_investigacion"],
+  ingles2: ["ingles3"],
+  // VIII SEMESTRE
+  uso_tecnologias: ["trabajo_titulo"],
+  didactica_probabilidad: ["taller_investigacion", "trabajo_titulo"],
+  practica_docente_intermedia: ["historia_epistemologia", "taller_investigacion", "trabajo_titulo", "identidad_profesional", "practica_docente_final"],
+  evaluacion: [],
+  ingles3: ["ingles4"],
+  // IX SEMESTRE
+  optativo2: [],
+  historia_epistemologia: ["practica_docente_final"],
+  taller_investigacion: ["practica_docente_final"],
+  trabajo_titulo: ["practica_docente_final"],
+  identidad_profesional: ["practica_docente_final"],
+  ingles4: [],
+  // X SEMESTRE
+  practica_docente_final: []
+};
 
-  // 2º Semestre
-  { nombre: "Cálculo II", categoria: "funciones", abre: ["Cálculo III", "Métodos numéricos y ecuaciones diferenciales", "Estadística I"] },
-  { nombre: "Álgebra Lineal I", categoria: "numeros-algebra", abre: [] },
-  { nombre: "Programación", categoria: "pensamiento", abre: ["Métodos numéricos y ecuaciones diferenciales"] },
-  { nombre: "Ética cristiana", categoria: "fundamental", abre: [] },
-  { nombre: "Formación fundamental I", categoria: "fundamental", abre: ["Formación fundamental II"] },
+document.addEventListener("DOMContentLoaded", () => {
+  const subjects = document.querySelectorAll(".subject");
 
-  // 3º Semestre
-  { nombre: "Cálculo III", categoria: "funciones", abre: ["Análisis real"] },
-  { nombre: "Teoría de números", categoria: "numeros-algebra", abre: ["Estructuras algebraicas I"] },
-  { nombre: "Métodos numéricos y ecuaciones diferenciales", categoria: "funciones", abre: ["Uso de tecnologías para la enseñanza y aprendizaje de la matemática"] },
-  { nombre: "Estrategias discursivas para acceder al conocimiento disciplinar", categoria: "fundamental", abre: ["Estrategias discursivas para comunicar y enseñar el conocimiento disciplinar"] },
-  { nombre: "Formación fundamental II", categoria: "fundamental", abre: ["Formación fundamental III"] },
+  subjects.forEach(subj => {
+    // Solo asignaturas desbloqueadas son clickeables
+    if (!subj.classList.contains("locked")) {
+      subj.addEventListener("click", () => {
+        // Si ya está desbloqueada o clickeada, no hacer nada extra
+        if (subj.classList.contains("unlocked")) return;
 
-  // 4º Semestre
-  { nombre: "Análisis real", categoria: "funciones", abre: ["Didáctica del cálculo"] },
-  { nombre: "Estructuras algebraicas I", categoria: "numeros-algebra", abre: ["Didáctica de los sistemas numéricos"] },
-  { nombre: "Práctica docente inicial", categoria: "practicas", abre: ["Práctica docente intermedia", "Práctica comunitaria", "Fundamentos filosóficos y sociales de la educación"] },
-  { nombre: "Taller de aprendizaje y desarrollo adolescente", categoria: "profesional", abre: ["Práctica comunitaria", "Práctica docente intermedia"] },
-  { nombre: "Educar en y para la diversidad", categoria: "profesional", abre: ["Práctica comunitaria", "Práctica docente intermedia"] },
+        subj.classList.add("unlocked");
+        subj.style.backgroundColor = "#f48fb1"; // cambio color para mostrar que está activa
+        subj.style.color = "#fff";
 
-  // 5º Semestre
-  { nombre: "Didáctica del cálculo", categoria: "funciones", abre: ["Didáctica de la geometría"] },
-  { nombre: "Didáctica de los sistemas numéricos", categoria: "numeros-algebra", abre: ["Práctica comunitaria", "Práctica docente intermedia"] },
-  { nombre: "Geometría euclidiana plana", categoria: "geometria", abre: ["Geometría 3D y geometría no euclidiana"] },
-  { nombre: "Estadística I", categoria: "probabilidad-estadisticas", abre: ["Estadística II", "Didáctica de la estadística"] },
-  { nombre: "Formación fundamental III", categoria: "fundamental", abre: [] },
-
-  // 6º Semestre
-  { nombre: "Geometría 3D y geometría no euclidiana", categoria: "geometria", abre: ["Didáctica de la geometría"] },
-  { nombre: "Didáctica de la estadística", categoria: "probabilidad-estadisticas", abre: ["Didáctica de la probabilidad e inferencia"] },
-  { nombre: "Práctica comunitaria", categoria: "practicas", abre: ["Práctica docente final", "Historia y epistemología de la matemática", "Taller de investigación en didáctica de la matemática", "Trabajo de título", "Identidad profesional docente"] },
-  { nombre: "Psicología social aplicada en la escuela y su comunidad", categoria: "profesional", abre: [] },
-  { nombre: "Fundamentos filosóficos y sociales de la educación", categoria: "profesional", abre: [] },
-  { nombre: "Inglés I", categoria: "ingles", abre: ["Inglés II"] },
-
-  // 7º Semestre
-  { nombre: "Optativo I", categoria: "optativas", abre: [] },
-  { nombre: "Didáctica de la geometría", categoria: "geometria", abre: ["Uso de tecnologías para la enseñanza y aprendizaje de la matemática"] },
-  { nombre: "Estadística II", categoria: "probabilidad-estadisticas", abre: ["Didáctica de la probabilidad e inferencia"] },
-  { nombre: "Teoría y planificación curricular", categoria: "profesional", abre: ["Evaluación en y para el aprendizaje"] },
-  { nombre: "Políticas públicas educativas y gestión escolar", categoria: "profesional", abre: [] },
-  { nombre: "Estrategias discursivas para comunicar y enseñar el conocimiento disciplinar", categoria: "fundamental", abre: ["Taller de investigación en didáctica de la matemática"] },
-  { nombre: "Inglés II", categoria: "ingles", abre: ["Inglés III"] },
-
-  // 8º Semestre
-  { nombre: "Uso de tecnologías para la enseñanza y aprendizaje de la matemática", categoria: "pensamiento", abre: ["Trabajo de título"] },
-  { nombre: "Didáctica de la probabilidad e inferencia", categoria: "probabilidad-estadisticas", abre: ["Taller de investigación en didáctica de la matemática", "Trabajo de título"] },
-  { nombre: "Práctica docente intermedia", categoria: "practicas", abre: ["Historia y epistemología de la matemática", "Taller de investigación en didáctica de la matemática", "Trabajo de título", "Identidad profesional docente", "Práctica docente final"] },
-  { nombre: "Evaluación en y para el aprendizaje", categoria: "profesional", abre: [] },
-  { nombre: "Inglés III", categoria: "ingles", abre: ["Inglés IV"] },
-
-  // 9º Semestre
-  { nombre: "Optativo II", categoria: "optativas", abre: [] },
-  { nombre: "Historia y epistemología de la matemática", categoria: "epistemo", abre: ["Práctica docente final"] },
-  { nombre: "Taller de investigación en didáctica de la matemática", categoria: "epistemo", abre: ["Práctica docente final"] },
-  { nombre: "Trabajo de título", categoria: "epistemo", abre: ["Práctica docente final"] },
-  { nombre: "Identidad profesional docente", categoria: "profesional", abre: ["Práctica docente final"] },
-  { nombre: "Inglés IV", categoria: "ingles", abre: [] },
-
-  // 10º Semestre
-  { nombre: "Práctica docente final", categoria: "practicas", abre: [] }
-];
-
-const contenedor = document.getElementById("malla");
-const ramosMap = {};
-
-ramos.forEach(ramo => {
-  const div = document.createElement("div");
-  div.textContent = ramo.nombre;
-  div.className = `ramo ${ramo.categoria} bloqueado`;
-  div.addEventListener("click", () => aprobarRamo(ramo.nombre));
-  contenedor.appendChild(div);
-  ramosMap[ramo.nombre] = div;
+        // Desbloquear asignaturas que dependen de esta
+        const toUnlock = unlockMap[subj.id] || [];
+        toUnlock.forEach(id => {
+          const element = document.getElementById(id);
+          if (element && element.classList.contains("locked")) {
+            element.classList.remove("locked");
+            element.style.opacity = "1";
+            element.style.cursor = "pointer";
+          }
+        });
+      });
+    }
+  });
 });
-
-// Inicial desbloqueados (semestre 1)
-["Cálculo I", "Álgebra", "Geometría analítica y vectorial", "Antropología Cristiana"].forEach(nombre => {
-  ramosMap[nombre].classList.remove("bloqueado");
-});
-
-function aprobarRamo(nombre) {
-  const div = ramosMap[nombre];
-  div.classList.add("aprobado");
-  div.classList.add("bloqueado");
-  div.removeEventListener("click", () => aprobarRamo(nombre));
-
-  const ramo = ramos.find(r => r.nombre === nombre);
-  if (ramo && ramo.abre) {
-    ramo.abre.forEach(nuevo => {
-      if (ramosMap[nuevo]) {
-        ramosMap[nuevo].classList.remove("bloqueado");
-      }
-    });
-  }
-}
