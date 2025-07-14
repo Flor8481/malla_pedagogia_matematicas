@@ -1,1 +1,94 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #fff0f6;
+  margin: 20px;
+  color: #333;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#malla-container {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+  padding-bottom: 20px;
+}
+
+/* Columna semestre */
+.semestre {
+  min-width: 180px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.semestre h2 {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+  color: #555;
+}
+
+/* Ramo (cuadro) */
+.ramo {
+  margin: 6px 0;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #333;
+  font-weight: 600;
+  text-align: center;
+  user-select: none;
+  transition: transform 0.2s ease;
+  opacity: 0.6;
+  border: 2px solid transparent;
+}
+
+/* Ramo aprobado */
+.ramo.aprobado {
+  opacity: 1;
+  border-color: #333;
+  text-decoration: line-through;
+  background-color: #cde9d8; /* verde pastel para aprobado */
+  color: #2a532e;
+  cursor: default;
+  transform: scale(1.05);
+  pointer-events: none;
+}
+
+/* Ramo desbloqueado (se puede clicar) */
+.ramo.desbloqueado {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Categorías con colores pastel */
+.ramo.FUNCIONES { background: #ffe0f0; } /* rosa pastel */
+.ramo['PROGRAMA DE INGLÉS'] { background: #f0e0ff; } /* lila pastel */
+.ramo['FORMACIÓN FUNDAMENTAL'] { background: #e0f7ff; } /* celeste pastel */
+.ramo['FORMACIÓN PROFESIONAL'] { background: #fff0e0; } /* melocotón pastel */
+.ramo.GEOMETRÍA { background: #f0fff0; } /* verde claro pastel */
+.ramo['PROBABILIDAD Y ESTÁDISTICAS'] { background: #fff0f5; } /* rosa pálido pastel */
+.ramo['PENSAMIENTO COMPUTACIONAL Y HABILIDADES DIGITALES'] { background: #e6f2ff; } /* azul claro pastel */
+.ramo['LÍNEA DE EPISTEMOLOGÍA E INVESTIGACIÓN'] { background: #f9f0ff; } /* lavanda pastel */
+.ramo.PRÁCTICAS { background: #ffe4e1; } /* rosa suave */
+.ramo['NÚMEROS Y ALGEBRA'] { background: #ffd9e8; } /* rosa pastel */
+.ramo['LÍNEA DE ASIGNATURAS OPTATIVAS'] { background: #f0fff5; } /* verde menta pastel */
+
+/* Bloqueado (no clicable ni visible muy atenuado) */
+.ramo.bloqueado {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+/* Agregar efecto hover */
+.ramo.desbloqueado:hover {
+  transform: scale(1.08);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
 
