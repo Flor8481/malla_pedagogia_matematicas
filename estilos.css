@@ -1,52 +1,85 @@
 body {
-  font-family: Arial, sans-serif;
-  background-color: #fff;
-  padding: 20px;
+  font-family: sans-serif;
+  background-color: #fdfdfd;
+  margin: 20px;
 }
 
 h1 {
   text-align: center;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 10px;
-  margin-top: 20px;
+.semestre {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.semestre h2 {
+  margin: 10px 0;
 }
 
 .ramo {
-  border-radius: 10px;
   padding: 10px;
-  color: #333;
-  cursor: pointer;
+  margin: 5px;
+  width: 200px;
   text-align: center;
+  border-radius: 12px;
+  border: 2px solid transparent;
+  cursor: pointer;
   user-select: none;
-  transition: transform 0.2s, opacity 0.2s;
-  opacity: 0.5;
-  font-size: 0.9rem;
+  transition: all 0.3s;
 }
 
-.ramo.aprobado {
-  opacity: 1;
+.ramo:hover {
   transform: scale(1.05);
 }
 
-/* Colores pasteles por categoría */
-.funciones { background-color: #ffe0f0; }
-.numeros-algebra { background-color: #e0d6ff; }
-.geometria { background-color: #d1f0ff; }
-.probabilidad-estadisticas { background-color: #ffe6c7; }
-.ingles { background-color: #f0ffe0; }
-.fundamental { background-color: #fff7d6; }
-.profesional { background-color: #dafbe1; }
-.pensamiento { background-color: #f2e0ff; }
-.epistemo { background-color: #fddde6; }
-.practicas { background-color: #fce5cd; }
-.optativas { background-color: #ffd6e7; }
-
-.ramo.bloqueado {
-  opacity: 0.2;
-  pointer-events: none;
+.aprobado {
+  border-color: #4caf50;
+  opacity: 0.6;
 }
 
+.funciones {
+  background-color: #ffcce0; /* rosa pastel */
+}
+
+.numeros-algebra {
+  background-color: #ffccf9; /* rosa lila pastel */
+}
+
+.geometria {
+  background-color: #cce5ff; /* azul pastel */
+}
+
+.formacion-fundamental {
+  background-color: #ffffcc; /* amarillo pastel */
+}
+
+.formacion-profesional {
+  background-color: #d5f4e6; /* verde menta pastel */
+}
+
+.probabilidad-estadisticas {
+  background-color: #ffe0cc; /* durazno pastel */
+}
+
+.pensamiento-computacional {
+  background-color: #f0e6ff; /* lila muy claro */
+}
+
+.epistemologia {
+  background-color: #fce2ce; /* crema pastel */
+}
+
+.practicas {
+  background-color: #e6f7ff; /* celeste pastel */
+}
+
+.ingles {
+  background-color: #fddde6; /* rosa más claro */
+}
+
+.optativas {
+  background-color: #f0fff0; /* verde muy clarito */
+}
