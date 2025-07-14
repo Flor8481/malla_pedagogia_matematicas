@@ -1,85 +1,51 @@
 body {
-  font-family: sans-serif;
-  background-color: #fdfdfd;
-  margin: 20px;
-}
-
-h1 {
+  background-color: #fff0f6;
+  font-family: Arial, sans-serif;
+  padding: 30px;
+  color: #4a0033;
   text-align: center;
 }
-
-.semestre {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+h1 {
+  margin-bottom: 20px;
+  color: #ad1457;
+}
+.semester {
+  margin-bottom: 40px;
+}
+.semester h2 {
+  color: #880e4f;
+  border-bottom: 2px solid #f48fb1;
+  padding-bottom: 5px;
   margin-bottom: 20px;
 }
-
-.semestre h2 {
-  margin: 10px 0;
+#malla {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
 }
-
-.ramo {
-  padding: 10px;
-  margin: 5px;
-  width: 200px;
-  text-align: center;
+.subject {
+  background-color: #fce4ec;
+  border: 2px solid #f8bbd0;
   border-radius: 12px;
-  border: 2px solid transparent;
+  padding: 12px 18px;
+  min-width: 220px;
   cursor: pointer;
+  font-weight: 600;
+  color: #d81b60;
   user-select: none;
-  transition: all 0.3s;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  text-align: center;
 }
-
-.ramo:hover {
-  transform: scale(1.05);
-}
-
-.aprobado {
-  border-color: #4caf50;
+.subject.locked {
+  background-color: #f8bbd0;
+  border-color: #f48fb1;
+  color: #880e4f;
+  cursor: not-allowed;
   opacity: 0.6;
 }
-
-.funciones {
-  background-color: #ffcce0; /* rosa pastel */
-}
-
-.numeros-algebra {
-  background-color: #ffccf9; /* rosa lila pastel */
-}
-
-.geometria {
-  background-color: #cce5ff; /* azul pastel */
-}
-
-.formacion-fundamental {
-  background-color: #ffffcc; /* amarillo pastel */
-}
-
-.formacion-profesional {
-  background-color: #d5f4e6; /* verde menta pastel */
-}
-
-.probabilidad-estadisticas {
-  background-color: #ffe0cc; /* durazno pastel */
-}
-
-.pensamiento-computacional {
-  background-color: #f0e6ff; /* lila muy claro */
-}
-
-.epistemologia {
-  background-color: #fce2ce; /* crema pastel */
-}
-
-.practicas {
-  background-color: #e6f7ff; /* celeste pastel */
-}
-
-.ingles {
-  background-color: #fddde6; /* rosa más claro */
-}
-
-.optativas {
-  background-color: #f0fff0; /* verde muy clarito */
+.subject:hover:not(.locked) {
+  background-color: #f48fb1;
+  color: #fff;
+  border-color: #ad1457;
 }
